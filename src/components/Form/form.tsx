@@ -1,20 +1,40 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import styles from './form.module.css'
 import { Modal } from 'antd';
 
 
 export default function Form() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        setIsModalOpen(true);
+      };
+    
+      const handleOk = () => {
+        setIsModalOpen(false);
+      };
+    
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
         <h2>Sample Form</h2>
-        <form action="#" className={styles.form}>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" />
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" />
+        <form className={styles.form}>
+            <div className={styles.input}>               
+                <label htmlFor="firstname">firstname:</label>
+                <input type="text" name="firstname" id="firstname" />
+            </div>
+            <div className={styles.input}>               
+                <label htmlFor="lastname">Lastname:</label>
+                <input type="text" name="lastname" id="lastname" />
+            </div>
             <div className={styles.buttons}>
-                <button type="submit">Submit</button>
-                <button>Back</button>
+                <button className={styles.button} onClick={showModal}>Intrests</button>
+                <button className={styles.submit} type="submit">Submit</button>
             </div>
         </form>
     </div>
